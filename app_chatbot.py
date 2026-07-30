@@ -10,3 +10,7 @@ import streamlit
 
 print("Hello, world")
 streamlit.write("Hi, World")
+
+for num in range(1,6):
+  print(num)
+  streamlit.write(num)
