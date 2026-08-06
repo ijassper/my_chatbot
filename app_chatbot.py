@@ -6,11 +6,20 @@
 # -> 입력함수 text_input(), number_input()
 # -> 출력함수 write()
 
-import streamlit
+import streamlit as st
 
 print("Hello, world")
-streamlit.write("Hi, World")
+st.write("Hi, World")
 
+'''
 for num in range(1,6):
   print(num)
-  streamlit.write(num)
+  st.write(num)
+'''
+
+# 텍스트박스 입력함수 input("")
+input("이름을 입력하세요: ")
+name = st.text_input("이름을 입력하세요: ")
+
+# 000님 반갑습니다.
+st.write(f"{name}님 반갑습니다.")
