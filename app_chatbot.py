@@ -36,4 +36,4 @@ with col1:
 
 with col2:  
   option = st.selectbox("날씨를 선택하세요",["맑음","흐림","비"])
-    st.write(option)
+  st.write(option)
