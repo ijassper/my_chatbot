@@ -22,8 +22,6 @@ col1, col2 = st.columns(2)
 
 with col1:
   name = st.text_input("이름을 입력하세요")
-
-with col2:
   # age = st.number_input("나이를 입력하세요")
 
   if name:
@@ -33,7 +31,9 @@ with col2:
     st.write(f"{name}님 반갑습니다.")
     # 자료형 문자, 숫자, 불연산자, 튜플, 리스트, 딕셔너리
     #st.write(type(age))
-    option = st.selectbox("날씨를 선택하세요",["맑음","흐림","비"])
-    st.write(option)
   #else:
     #미출력
+
+with col2:  
+  option = st.selectbox("날씨를 선택하세요",["맑음","흐림","비"])
+    st.write(option)
