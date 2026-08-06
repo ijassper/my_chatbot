@@ -46,5 +46,5 @@ with col2:
   st.subheader("날씨를 알아볼까요?")
   if st.button("클릭하세요."):
     option = st.selectbox("날씨를 선택하세요",["맑음","흐림","비"])
-    if option:
-      st.write(f"날씨 선택 : {option}")
+    #weather = 
+    st.write(f"날씨 선택 : {option}")
