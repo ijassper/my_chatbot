@@ -15,6 +15,8 @@ import streamlit as st
 #  print(num)
 #  st.write(num)
 
+st.button("클릭하세요.")
+
 # 대제목 만들기
 st.title("날씨 챗봇")
 # 중제목 만들기
