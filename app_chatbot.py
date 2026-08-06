@@ -11,11 +11,10 @@ import streamlit as st
 print("Hello, world")
 st.write("Hi, World")
 
-'''
-for num in range(1,6):
-  print(num)
-  st.write(num)
-'''
+#for num in range(1,6):
+#  print(num)
+#  st.write(num)
+
 
 # 텍스트박스 입력함수 input("")
 input("이름을 입력하세요: ")
