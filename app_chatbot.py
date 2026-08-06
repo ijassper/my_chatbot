@@ -15,14 +15,14 @@ import streamlit as st
 #  print(num)
 #  st.write(num)
 
-st.button("클릭하세요.")
+#st.button("클릭하세요.")
 
 # 대제목 만들기
 st.title("날씨 챗봇")
 # 중제목 만들기
-st.header("반갑습니다.")
+#st.header("반갑습니다.")
 # 소제목 만들기
-st.subheader("날씨를 알아볼까요?")
+#st.subheader("날씨를 알아볼까요?")
 
 # 텍스트박스 입력함수 input("")
 # input("이름을 입력하세요: ")
@@ -36,12 +36,15 @@ with col1:
     #출력
     # 000님 반갑습니다.
     #st.write(f"{age}살, {name}님 반갑습니다.")
-    st.write(f"{name}님 반갑습니다.")
+    #st.write(f"{name}님 반갑습니다.")
+    st.header(f"{name}님 반갑습니다.")
     # 자료형 문자, 숫자, 불연산자, 튜플, 리스트, 딕셔너리
     #st.write(type(age))
   #else:
     #미출력
-
 with col2:  
-  option = st.selectbox("날씨를 선택하세요",["맑음","흐림","비"])
-  st.write(option)
+  st.subheader("날씨를 알아볼까요?")
+  if st.button("클릭하세요."):
+    option = st.selectbox("날씨를 선택하세요",["맑음","흐림","비"])
+    if option:
+      st.write(f"날씨 선택 : {option}")
