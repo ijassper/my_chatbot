@@ -8,13 +8,19 @@
 
 import streamlit as st
 
-print("Hello, world")
-st.write("Hi, World")
+#print("Hello, world")
+#st.write("Hi, World")
 
 #for num in range(1,6):
 #  print(num)
 #  st.write(num)
 
+# 대제목 만들기
+st.title("날씨 챗봇")
+# 중제목 만들기
+st.header("반갑습니다.")
+# 소제목 만들기
+st.subheader("날씨를 알아볼까요?")
 
 # 텍스트박스 입력함수 input("")
 # input("이름을 입력하세요: ")
