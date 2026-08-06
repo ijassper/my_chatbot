@@ -25,6 +25,6 @@ if name:
   # 000님 반갑습니다.
   st.write(f"{name}님 반갑습니다.")
   # 자료형 문자, 숫자, 불연산자, 튜플, 리스트, 딕셔너리
-  type(name)
+  st.wirte(type(name))
 #else:
   #미출력
