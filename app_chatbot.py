@@ -65,7 +65,7 @@ if st.button("날씨 확인"):
     'numOfRows': '10',
     'dataType': 'JSON',
     'base_date': '20260813',
-    'base_time': '0700',
+    'base_time': '0500',
     'nx': nx,
     'ny': ny,
   }
