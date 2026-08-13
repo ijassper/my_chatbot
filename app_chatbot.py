@@ -59,7 +59,7 @@ ny = st.text_input("지역의 Y좌표를 입력하세요 (예: 60")
 
 if st.button("날씨 확인"):
   # API로 데이터 보내기
-  parmas = {
+  params = {
     'serviceKey': SERVICE_KEY,
     'pageNo': '1',
     'numOfRows': '10',
