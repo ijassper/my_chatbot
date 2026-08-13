@@ -73,6 +73,7 @@ if st.button("날씨 확인"):
   # 요청한 API 데이터 받기
   response = requests.get(BASE_URL, params=params)
   data = response.json()
+  st.write(data)
 
   # 받은 정보 JSON 구조 분석
   try:
