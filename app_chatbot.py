@@ -79,6 +79,7 @@ if st.button("날씨 확인"):
   st.write(f"조회 날짜: {today}")
 
   # 받은 정보 JSON 구조 분석
+  st.write(data)
   try:
     # 응답 코드 확인
     result_code = data['response']['header']['resultCode']
