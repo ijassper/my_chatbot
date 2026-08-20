@@ -55,8 +55,8 @@ st.title("날씨 챗봇")
 SERVICE_KEY = "3c2a5f26fb58a9dc3506acf29da6d160442693bbba7ec23b401c1367712f80e5"
 BASE_URL = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"  # 단기예보조회
 
-nx = st.text_input("지역의 X좌표를 입력하세요 (예: 60")
-ny = st.text_input("지역의 Y좌표를 입력하세요 (예: 60")
+nx = st.text_input("지역의 X좌표를 입력하세요 (예: 60"))
+ny = st.text_input("지역의 Y좌표를 입력하세요 (예: 60"))
 
 today = datetime.now().strftime('%Y%m%d')
 
