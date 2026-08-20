@@ -57,6 +57,8 @@ BASE_URL = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageF
 nx = st.text_input("지역의 X좌표를 입력하세요 (예: 60")
 ny = st.text_input("지역의 Y좌표를 입력하세요 (예: 60")
 
+today = datetime.now().strftime('%Y%m%d')
+
 if st.button("날씨 확인"):
   # API로 데이터 보내기
   params = {
@@ -64,7 +66,7 @@ if st.button("날씨 확인"):
     'pageNo': '1',
     'numOfRows': '10',
     'dataType': 'JSON',
-    'base_date': '20260813',
+    'base_date': today,
     'base_time': '0500',
     'nx': nx,
     'ny': ny,
@@ -73,15 +75,22 @@ if st.button("날씨 확인"):
   # 요청한 API 데이터 받기
   response = requests.get(BASE_URL, params=params)
   data = response.json()
-  st.write(data)
+  st.write(f"조회 날짜: {today}")
 
   # 받은 정보 JSON 구조 분석
   try:
-    items = data['response']['body']['items']['item']
-    st.write("##현재 날씨 정보")
-    for item in items:
-      category = item['category']
-      value = item['fcsValue']
-      st.write(f"- {category}: {value}")
-  except KeyError:
-    st.error("데이터를 가져올 수 없습니다.")
+        # 응답 코드 확인
+        result_code = data['response']['header']['resultCode']
+        if result_code == '00':
+            items = data['response']['body']['items']['item']
+            st.success("날씨 데이터를 성공적으로 가져왔습니다!")
+            
+            # 데이터 요약 출력
+            for item in items[:10]: # 보기 좋게 10개만 출력
+                st.write(f"항목: {item['category']} | 예보값: {item['fcstValue']}")
+        else:
+            st.warning(f"API 호출은 되었으나 에러가 발생했습니다: {data['response']['header']['resultMsg']}")
+            
+    except Exception as e:
+        st.error(f"데이터 처리 중 오류 발생: {e}")
+        st.json(data)
