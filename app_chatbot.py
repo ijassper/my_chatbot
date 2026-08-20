@@ -79,18 +79,18 @@ if st.button("날씨 확인"):
 
   # 받은 정보 JSON 구조 분석
   try:
-        # 응답 코드 확인
-        result_code = data['response']['header']['resultCode']
-        if result_code == '00':
-            items = data['response']['body']['items']['item']
-            st.success("날씨 데이터를 성공적으로 가져왔습니다!")
-            
-            # 데이터 요약 출력
-            for item in items[:10]: # 보기 좋게 10개만 출력
-                st.write(f"항목: {item['category']} | 예보값: {item['fcstValue']}")
-        else:
-            st.warning(f"API 호출은 되었으나 에러가 발생했습니다: {data['response']['header']['resultMsg']}")
-            
-    except Exception as e:
-        st.error(f"데이터 처리 중 오류 발생: {e}")
-        st.json(data)
+    # 응답 코드 확인
+    result_code = data['response']['header']['resultCode']
+    if result_code == '00':
+        items = data['response']['body']['items']['item']
+        st.success("날씨 데이터를 성공적으로 가져왔습니다!")
+        
+        # 데이터 요약 출력
+        for item in items[:10]: # 보기 좋게 10개만 출력
+            st.write(f"항목: {item['category']} | 예보값: {item['fcstValue']}")
+    else:
+        st.warning(f"API 호출은 되었으나 에러가 발생했습니다: {data['response']['header']['resultMsg']}")
+        
+  except Exception as e:
+    st.error(f"데이터 처리 중 오류 발생: {e}")
+    st.json(data)
