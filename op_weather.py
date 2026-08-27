@@ -17,4 +17,5 @@ city = st.text_input("도시 이름을 영어로 입력하세요 (예:Seoul,Busa
 
 # 날씨를 검색할 도시를 입력받으면 검색 시작
 if city:
+    st.write(city)
     get_weather(city)
