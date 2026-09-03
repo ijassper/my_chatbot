@@ -18,4 +18,5 @@ def get_weather(city_name):
 
 # 날씨를 검색할 도시를 입력받으면 검색 시작
 if city:    
-    get_weather(city)
+    weather_data = get_weather(city)
+    st.write(weather_data)
