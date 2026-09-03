@@ -25,6 +25,6 @@ if city:
     # 도시출력
     st.write(f"{city}의 날씨를 알려드릴게요.")
     # 온도, 날씨(맑음)
-    st.write(f"온도 : {weather_data['main']['temp']} C")
+    st.write(f"온도 : {int(weather_data['main']['temp'])} C")
     #st.write(f"날씨 : {weather_data['weather'][0]['description']}")
 
