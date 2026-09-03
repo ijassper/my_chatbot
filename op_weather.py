@@ -19,10 +19,10 @@ def get_weather(city_name):
 # 날씨를 검색할 도시를 입력받으면 검색 시작
 if city:    
     weather_data = get_weather(city)
-    st.write(weather_data)
+    #st.write(weather_data)
 
     # 도시출력
-    st.write(f"(city)의 날씨를 알려드릴게요.")
+    st.write(f"{city}의 날씨를 알려드릴게요.")
     # 온도, 날씨(맑음)
     st.write("온도 : _____________")
     st.write("날씨 : _____________")
