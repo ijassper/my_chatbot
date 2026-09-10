@@ -15,6 +15,9 @@ city_map = {
     "광주":"Gwangju", "대전":"Daejeon", "울산":"Ulsan", "수원":"Suwon", "제주":"Jeju"
 }
 
+# 날씨를 한글로 바뀌는 딕셔너리
+weather_dict = {"Clouds":"흐림", "Clear":"맑음", "Rain":"비", "Snow":"눈", "Mist":"안개"}
+
 # 사용자 입력박스
 city = st.text_input("도시 이름을 영어로 입력하세요 (예:Seoul,Busan)","Seoul")
 
@@ -38,9 +41,10 @@ if city:
     temp_min = int(weather_data['main']['temp_min'])  # 최저 기온
     temp_max = int(weather_data['main']['temp_max'])  # 최고 기온
     desc = weather_data['weather'][0]['main']   # 날씨 설명
+    main_weather = weather_dict[desc]
     
     st.write(f"🌡️ 현재 기온: {temp}°C")
     st.write(f"🔽 최저 기온: {temp_min}°C")
     st.write(f"🔼 최고 기온: {temp_max}°C")
-    st.write(f"☁️ 날씨 상태: {desc}")
+    st.write(f"☁️ 날씨 상태: {main_weather}")
 
