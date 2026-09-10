@@ -25,6 +25,13 @@ if city:
     # 도시출력
     st.write(f"{city}의 날씨를 알려드릴게요.")
     # 온도, 날씨(맑음)
-    st.write(f"온도 : {int(weather_data['main']['temp'])} C")
-    #st.write(f"날씨 : {weather_data['weather'][0]['description']}")
+    temp = int(weather_data['main']['temp'])          # 현재 기온
+    temp_min = int(weather_data['main']['temp_min'])  # 최저 기온
+    temp_max = int(weather_data['main']['temp_max'])  # 최고 기온
+    desc = weather_data['weather'][0]['description']   # 날씨 설명
+    
+    st.write(f"🌡️ 현재 기온: {temp}°C")
+    st.write(f"🔽 최저 기온: {temp_min}°C")
+    st.write(f"🔼 최고 기온: {temp_max}°C")
+    st.write(f"☁️ 날씨 상태: {desc}")
 
