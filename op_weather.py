@@ -38,7 +38,7 @@ def get_weather(city_name):
 
 if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울)"):
     st.session_state.message.append({"role":"user", "content":prompt})
-    with st.chat_message("user")
+    with st.chat_message("user"):
         st.markdown(prompt)
 
     # 날씨를 검색할 도시를 입력받으면 검색 시작
