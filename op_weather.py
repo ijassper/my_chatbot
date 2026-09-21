@@ -19,7 +19,7 @@ city_map = {
 weather_dict = {"Clouds":"흐림", "Clear":"맑음", "Rain":"비", "Snow":"눈", "Mist":"안개"}
 
 # 사용자 입력박스
-city = st.text_input("도시 이름을 영어로 입력하세요 (예:Seoul,Busan)","Seoul")
+city = st.text_input("도시 이름을 영어로 입력하세요 (예:서울,부산)","서울")
 
 def get_weather(city_name):
     #st.write(city_name,API_KEY)
