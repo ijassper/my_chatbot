@@ -37,9 +37,9 @@ if city:
     # 도시출력
     st.write(f"{city}의 날씨를 알려드릴게요.")
     # 온도, 날씨(맑음)
-    temp = int(weather_data['main']['temp'])          # 현재 기온
-    temp_min = int(weather_data['main']['temp_min'])  # 최저 기온
-    temp_max = int(weather_data['main']['temp_max'])  # 최고 기온
+    temp = round(weather_data['main']['temp'])          # 현재 기온
+    temp_min = round(weather_data['main']['temp_min'])  # 최저 기온
+    temp_max = round(weather_data['main']['temp_max'])  # 최고 기온
     desc = weather_data['weather'][0]['main']   # 날씨 설명
     main_weather = weather_dict[desc]
     
