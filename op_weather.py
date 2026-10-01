@@ -57,8 +57,9 @@ if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울)"):
             temp = round(weather_data['main']['temp'])          # 현재 기온
             temp_min = round(weather_data['main']['temp_min'])  # 최저 기온
             temp_max = round(weather_data['main']['temp_max'])  # 최고 기온
-            desc = weather_data['weather'][0]['main']   # 날씨 설명
-            main_weather = weather_dict[desc]
+            # API에서 받은 원본값 (Clear, Clouds)
+            main_weather = weather_data['weather'][0]['main']   # 날씨 설명
+            desc = weather_dict.get(main_weather, main_weather)
             
             reply = f"{prompt}의 현재 날씨입니다.\n\n 기온: {temp}°C\n 상태: {desc}"
             st.markdown(reply)
