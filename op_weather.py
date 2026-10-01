@@ -7,6 +7,15 @@ API_KEY = "8464cff4dd30fe09c5447727526f939a"
 st.title("우리동네 날씨챗봇")
 st.write("도시 이름을 잊력하면 현재 날씨를 알려드려요.")
 
+# 세션 상태 초기화
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# 세션에 대화 기록 저장
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+
 # 한글로 도서를 입력하면 영어로 검색하는 기능
 # 서울 - > Seoul
 # 1. 리스트 2. 딕셔너리 3. 튜플
@@ -21,14 +30,6 @@ weather_dict = {"Clouds":"흐림", "Clear":"맑음", "Rain":"비", "Snow":"눈",
 # 사용자 입력박스
 #city = st.text_input("도시 이름을 영어로 입력하세요 (예:서울,부산)","서울")
 
-# 세션에 대화 기록 저장
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
 def get_weather(city_name):
     #st.write(city_name,API_KEY)
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_KEY}&units=metric&lang=kr"
@@ -37,11 +38,12 @@ def get_weather(city_name):
     return response.json()
 
 if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울)"):
-    st.session_state.messages.append({"role":"user", "content":prompt})
+    # 1. 사용자 질문 출력 및 저장
     with st.chat_message("user"):
         st.markdown(prompt)
+    st.session_state.messages.append({"role":"user", "content":prompt})
 
-    # 날씨를 검색할 도시를 입력받으면 검색 시작
+    # 2.날씨를 검색할 도시를 입력받으면 검색 시작
     with st.chat_message("assistant"):    
         Eng_city = city_map.get(prompt, prompt)
         weather_data = get_weather(Eng_city)
