@@ -62,9 +62,9 @@ if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울)"):
             
             reply = f"{prompt}의 현재 날씨입니다.\n\n 기온: {temp}°C\n 상태: {desc}"
             st.markdown(reply)
-            st.session_state.messages.append({"role":"assistant", "content":prompt})
+            st.session_state.messages.append({"role":"assistant", "content":reply})
         else:
             reply = "입력한 도시의 날씨 정보를 찾을 수 없어요."
             st.markdown(reply)
-            st.session_state.messages.append({"role":"assistant", "content":prompt})
+            st.session_state.messages.append({"role":"assistant", "content":reply})
             
