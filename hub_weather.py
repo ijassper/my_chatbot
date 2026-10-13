@@ -9,4 +9,4 @@ kst = ZoneInfo("Asia/Seoul")
 now_kst = datetime.now(kst)
 
 # 오늘의 날짜 출력
-st.write(now)
+st.write(now_kst)
