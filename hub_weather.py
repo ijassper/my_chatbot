@@ -1,4 +1,5 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import streamlit as st
 
 # 한국 시간대 KST 설정
