@@ -5,4 +5,4 @@ import streamlit as st
 now = datetime.now()
 
 # 오늘의 날짜 출력
-st.wirte(now)
+st.write(now)
