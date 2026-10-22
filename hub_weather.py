@@ -15,7 +15,9 @@ tm_value = now_kst.strftime('%Y%m%d%H%M')
 url = https://apihub.kma.go.kr/api/typ01/url/kma_sfctm2.php?tm=tm_value&stn=0&help=1&authKey=HKQyUIPtQ72kMlCD7UO9cw
 response = requests.get(url)
 
-st.write(response)
+st.write("응답결과")
+# 데이터의 길이가 길어서 text함수가 더 보기 편함.
+st.text(response.text)
 
 # 오늘의 날짜 출력
 st.write(now_kst)
