@@ -1,6 +1,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import streamlit as st
+import requests
 
 # 한국 시간대 KST 설정
 kst = ZoneInfo("Asia/Seoul")
