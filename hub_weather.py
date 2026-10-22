@@ -13,6 +13,9 @@ tm_value = now_kst.strftime('%Y%m%d%H%M')
 
 # 기상청 API 허브 RestAPI
 url = https://apihub.kma.go.kr/api/typ01/url/kma_sfctm2.php?tm=tm_value&stn=0&help=1&authKey=HKQyUIPtQ72kMlCD7UO9cw
+response = requests.get(url)
+
+st.write(response)
 
 # 오늘의 날짜 출력
 st.write(now_kst)
