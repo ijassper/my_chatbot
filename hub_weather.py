@@ -16,10 +16,24 @@ tm_value = now_kst.strftime('%Y%m%d%H%M')
 url = f"https://apihub.kma.go.kr/api/typ01/url/kma_sfctm2.php?tm=tm_value&stn=0&help=1&authKey=HKQyUIPtQ72kMlCD7UO9cw"
 response = requests.get(url)
 
+# 테이터 파싱
+# API에서 데이터를 가져와서 필요한 정보 찾기
+# 1단계 : 전체 내용을 줄 단위로 분리
+#all_lines = ________________
+
+sample_text = "Hello, python world"
+# 인뎅싱으로 hello만 출력
+st.write(sample_text[:5])
+
+
 st.write("응답결과")
 # 데이터의 길이가 길어서 text함수가 더 보기 편함.
 st.text(response.text)
 
 # 오늘의 날짜 출력
-st.write(now_kst)
-st.write(tm_value)
+st.write("현재 시간 : ", now_kst)
+st.write("변환된 현재 시간 : ",tm_value)
+
+# 오늘에 기상 데이터 출력
+
+st.write("현재 온도 : ", )
