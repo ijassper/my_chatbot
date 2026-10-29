@@ -31,13 +31,16 @@ for line in all_lines:
     # 만들어놓은 정제라인 변수에 리스트자료형으로 데이터 처리  
     clean_lines.append(line)
 
-data_line = clean_lines[-5:-1]
+# 3. 분리시켜놓은 정보에서 마지막 정보만 추출
+data_line = clean_lines[-1]
 
-st.write("정재데이터")
-st.write(data_line)
+# 4. 최종 정보에서 온도 데이터 추출
+
+#st.write("정재데이터")
+#st.write(data_line)
 
 # 기대출력
-# 현재 온도 : 10
+현재 온도 : _________
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
