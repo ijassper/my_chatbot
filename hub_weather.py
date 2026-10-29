@@ -34,7 +34,7 @@ for line in all_lines:
 data_line = clean_lines
 
 st.write("정재데이터")
-st.write(data_line)
+st.write(clean_lines)
 
 # 기대출력
 # 현재 온도 : 10
