@@ -23,21 +23,25 @@ response = requests.get(url)
 all_lines = response.text.split('\n')
 
 # 2. 필요한 정보 검색(반복문)
-clean_lines = []
+#clean_lines = []
+
 # 샘플데이터 중에서 온도 정보가 있는 자료 검색
 # sample_data = [0.3, 10.0, 1.6, 56.0, 6.9, -9.0, -9.0, -9.0, -9.0, -9.0]
 # for clean_lines in sample_data:
 #  if clean_lines == 10.0:
 #    st.write("현재온도 : ", clean_lines)
+
+#data_line = ___________
+
 st.write("마지막라인")
-st.write(all_lines)
+st.write(data_line)
 
 # 기대출력
 # 현재 온도 : 10
 
 sample_text = "Hello, python world"
-# 인뎅싱으로 hello만 출력
-#st.write(sample_text[:5])
+인뎅싱으로 hello만 출력
+st.write(sample_text[13:])
 
 
 st.write("응답결과")
