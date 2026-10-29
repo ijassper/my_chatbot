@@ -34,7 +34,7 @@ all_lines = response.text.split('\n')
 #data_line = ___________
 
 st.write("마지막라인")
-st.write(data_line)
+#st.write(data_line)
 
 # 기대출력
 # 현재 온도 : 10
