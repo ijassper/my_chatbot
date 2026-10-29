@@ -40,7 +40,7 @@ st.write(data_line)
 # 현재 온도 : 10
 
 sample_text = "Hello, python world"
-인뎅싱으로 hello만 출력
+#인뎅싱으로 hello만 출력
 st.write(sample_text[13:])
 
 
