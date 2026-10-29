@@ -37,10 +37,10 @@ data_line = clean_lines[-1]
 # 4. 최종 정보에서 온도 데이터 추출
 
 #st.write("정재데이터")
-#st.write(data_line)
+st.write(data_line)
 
-# 기대출력
-현재 온도 : _________
+# 오늘의 온도 출력
+st.write("현재 온도 : _________")
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
