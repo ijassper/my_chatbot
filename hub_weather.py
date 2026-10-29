@@ -27,7 +27,7 @@ clean_lines = []
 # 샘플데이터 중에서 온도 정보가 있는 자료 검색
 # sample_data = [0.3, 10.0, 1.6, 56.0, 6.9, -9.0, -9.0, -9.0, -9.0, -9.0]
 for line in all_lines:
-  if line =! "" and not line.startswith('#'):
+  if line != "" and not line.startswith('#'):
     # 만들어놓은 정제라인 변수에 리스트자료형으로 데이터 처리  
     clean_lines.append(line)
 
