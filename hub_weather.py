@@ -18,15 +18,19 @@ response = requests.get(url)
 
 # 테이터 파싱
 # API에서 데이터를 가져와서 필요한 정보 찾기
+
 # 1단계 : 전체 내용을 줄 단위로 분리
-# all_lines = response.text.split('\n')
+all_lines = response.text.split('\n')
+
 # 2. 필요한 정보 검색(반복문)
 clean_lines = []
 # 샘플데이터 중에서 온도 정보가 있는 자료 검색
-sample_data = [0.3, 10.0, 1.6, 56.0, 6.9, -9.0, -9.0, -9.0, -9.0, -9.0]
-for clean_lines in sample_data:
-  if clean_lines == 10.0:
-    st.write("현재온도 : ", clean_lines)
+# sample_data = [0.3, 10.0, 1.6, 56.0, 6.9, -9.0, -9.0, -9.0, -9.0, -9.0]
+# for clean_lines in sample_data:
+#  if clean_lines == 10.0:
+#    st.write("현재온도 : ", clean_lines)
+st.wirte("마지막라인")
+st.wirte(all_lines)
 
 # 기대출력
 # 현재 온도 : 10
