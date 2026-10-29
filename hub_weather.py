@@ -31,7 +31,7 @@ all_lines = response.text.split('\n')
 #  if clean_lines == 10.0:
 #    st.write("현재온도 : ", clean_lines)
 
-#data_line = ___________
+data_line = all_lines[-1]
 
 st.write("마지막라인")
 #st.write(data_line)
@@ -41,7 +41,7 @@ st.write("마지막라인")
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
-st.write(sample_text[13:])
+#st.write(sample_text[13:])
 
 
 st.write("응답결과")
