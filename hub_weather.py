@@ -33,7 +33,7 @@ for line in all_lines:
 
 data_line = clean_lines
 
-st.write("정제데이터")
+st.write("정재데이터")
 st.write(data_line)
 
 # 기대출력
