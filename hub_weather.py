@@ -29,8 +29,8 @@ clean_lines = []
 # for clean_lines in sample_data:
 #  if clean_lines == 10.0:
 #    st.write("현재온도 : ", clean_lines)
-st.wirte("마지막라인")
-st.wirte(all_lines)
+st.write("마지막라인")
+st.write(all_lines)
 
 # 기대출력
 # 현재 온도 : 10
