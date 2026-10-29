@@ -31,7 +31,7 @@ for line in all_lines:
     # 만들어놓은 정제라인 변수에 리스트자료형으로 데이터 처리  
     clean_lines.append(line)
 
-data_line = clean_lines[-1]
+data_line = clean_lines[-5:-1]
 
 st.write("정재데이터")
 st.write(data_line)
