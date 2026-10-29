@@ -31,10 +31,10 @@ all_lines = response.text.split('\n')
 #  if clean_lines == 10.0:
 #    st.write("현재온도 : ", clean_lines)
 
-data_line = all_lines[-1]
+#data_line = all_lines[-1]
 
 st.write("마지막라인")
-st.write(data_line)
+st.write(all_lines)
 
 # 기대출력
 # 현재 온도 : 10
