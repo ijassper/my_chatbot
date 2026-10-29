@@ -23,18 +23,18 @@ response = requests.get(url)
 all_lines = response.text.split('\n')
 
 # 2. 필요한 정보 검색(반복문)
-#clean_lines = []
-
+clean_lines = []
 # 샘플데이터 중에서 온도 정보가 있는 자료 검색
 # sample_data = [0.3, 10.0, 1.6, 56.0, 6.9, -9.0, -9.0, -9.0, -9.0, -9.0]
-# for clean_lines in sample_data:
-#  if clean_lines == 10.0:
-#    st.write("현재온도 : ", clean_lines)
+for line in all_lines:
+  if line =! "" and not line.startswith('#'):
+    # 만들어놓은 정제라인 변수에 리스트자료형으로 데이터 처리  
+    clean_lines.append(line)
 
-#data_line = all_lines[-1]
+data_line = clean_lines
 
-st.write("마지막라인")
-st.write(all_lines)
+st.write("정제데이터")
+st.write(data_line)
 
 # 기대출력
 # 현재 온도 : 10
