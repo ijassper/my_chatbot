@@ -39,6 +39,8 @@ data_line = clean_lines[-1]
 st.write("마지막 정보 행")
 st.write(data_line)
 
+st.write(f"data_lined변수의 자료형 확인 : {type(data_line)}")
+
 # 오늘의 온도 출력
 st.write("현재 온도 : _________")
 
