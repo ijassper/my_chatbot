@@ -43,7 +43,7 @@ st.write("문제1. data_line의 자료형은 무엇인가요?")
 st.write(f"data_line변수의 자료형 확인 : {type(data_line)}")
 st.write("문제2. data_line에서 1024.4만 출력하세요.")
 st.write(data_line[:12])
-st.write(data_line[30:35])
+st.write(data_line[20:25])
 
 # 오늘의 온도 출력
 st.write("현재 온도 : _________")
