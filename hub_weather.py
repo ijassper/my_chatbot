@@ -36,7 +36,7 @@ data_line = clean_lines[-1]
 
 # 4. 최종 정보에서 온도 데이터 추출
 
-#st.write("정재데이터")
+st.write("마지막 정보 행")
 st.write(data_line)
 
 # 오늘의 온도 출력
