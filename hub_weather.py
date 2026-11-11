@@ -39,7 +39,9 @@ data_line = clean_lines[-1]
 st.write("마지막 정보 행")
 st.write(data_line)
 
+st.write("문제1. data_lined의 자료형은 무엇인가요?")
 st.write(f"data_lined변수의 자료형 확인 : {type(data_line)}")
+
 
 # 오늘의 온도 출력
 st.write("현재 온도 : _________")
