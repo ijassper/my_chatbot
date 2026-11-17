@@ -3,6 +3,20 @@ from zoneinfo import ZoneInfo
 import streamlit as st
 import requests
 
+# API 키 설정
+API_KEY = "8464cff4dd30fe09c5447727526f939a"
+
+st.title("우리동네 날씨챗봇")
+
+# 세션 상태 초기화
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# 세션에 대화 기록 저장
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
+      
 # 한국 시간대 KST 설정
 kst = ZoneInfo("Asia/Seoul")
 
@@ -53,24 +67,28 @@ TA = values[11]
 HM = values[13]
 WS = values[3]
 
-# 오늘의 온도 출력
-st.write(f"현재 온도 : {TA}°C")
-st.write(f"현재 습도 : {HM}%")
-st.write(f"현재 풍속 : {WS}m/s")
+# 오늘에 기상 데이터 출력
+#st.write(f"현재 온도 : {TA}°C")
+#st.write(f"현재 습도 : {HM}%")
+#st.write(f"현재 풍속 : {WS}m/s")
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
 #st.write(sample_text[13:])
-
 
 #st.write("응답결과")
 # 데이터의 길이가 길어서 text함수가 더 보기 편함.
 #st.text(response.text)
 
 # 오늘의 날짜 출력
-st.write("현재 시간 : ", now_kst)
-st.write("변환된 현재 시간 : ",tm_value)
+#st.write("현재 시간 : ", now_kst)
+#st.write("변환된 현재 시간 : ",tm_value)
 
-# 오늘에 기상 데이터 출력
+# 채팅 입력창
+if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울,부산,대전)","서울"):
+    # 1. 사용자 질문 출력 및 저장
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    st.session_state.messages.append({"role":"user", "content":prompt})
 
-#st.write("현재 온도 : ", )
+# 챗봇 답변 출력 영역
