@@ -46,6 +46,7 @@ st.write(data_line[:12])
 st.write(data_line[40:46])
 
 values = data_line.split()
+st.write(values)
 st.write(values[0])
 
 current_temp = values[11]
