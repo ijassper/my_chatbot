@@ -55,8 +55,8 @@ WS = values[3]
 
 # 오늘의 온도 출력
 st.write(f"현재 온도 : {TA}°C")
-st.write(f"현재 습도 : {HM}°C")
-st.write(f"현재 풍속 : {WS}°C")
+st.write(f"현재 습도 : {HM}%")
+st.write(f"현재 풍속 : {WS}m/s")
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
