@@ -36,31 +36,36 @@ data_line = clean_lines[-1]
 
 # 4. 최종 정보에서 온도 데이터 추출
 
-st.write("마지막 정보 행")
-st.write(data_line)
+#st.write("마지막 정보 행")
+#st.write(data_line)
 
-st.write("문제1. data_line의 자료형은 무엇인가요?")
-st.write(f"data_line변수의 자료형 확인 : {type(data_line)}")
-st.write("문제2. data_line에서 1024.5만 출력하세요.")
-st.write(data_line[:12])
-st.write(data_line[40:46])
+#st.write("문제1. data_line의 자료형은 무엇인가요?")
+#st.write(f"data_line변수의 자료형 확인 : {type(data_line)}")
+#st.write("문제2. data_line에서 1024.5만 출력하세요.")
+#st.write(data_line[:12])
+#st.write(data_line[40:46])
 
 values = data_line.split()
-st.write(values)
-st.write(values[0])
+#st.write(values)
+#st.write(values[0])
 
-current_temp = values[11]
+TA = values[11]
+HM = values[13]
+WS = values[3]
+
 # 오늘의 온도 출력
-st.write(f"현재 온도 : {current_temp}")
+st.write(f"현재 온도 : {TA}°C")
+st.write(f"현재 습도 : {HM}°C")
+st.write(f"현재 풍속 : {WS}°C")
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
 #st.write(sample_text[13:])
 
 
-st.write("응답결과")
+#st.write("응답결과")
 # 데이터의 길이가 길어서 text함수가 더 보기 편함.
-st.text(response.text)
+#st.text(response.text)
 
 # 오늘의 날짜 출력
 st.write("현재 시간 : ", now_kst)
@@ -68,4 +73,4 @@ st.write("변환된 현재 시간 : ",tm_value)
 
 # 오늘에 기상 데이터 출력
 
-st.write("현재 온도 : ", )
+#st.write("현재 온도 : ", )
