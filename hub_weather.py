@@ -50,7 +50,7 @@ st.write(values[0])
 
 current_temp = values[11]
 # 오늘의 온도 출력
-st.write("현재 온도 : {current_temp}")
+st.write(f"현재 온도 : {current_temp}")
 
 sample_text = "Hello, python world"
 #인뎅싱으로 hello만 출력
