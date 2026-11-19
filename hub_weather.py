@@ -85,7 +85,7 @@ sample_text = "Hello, python world"
 #st.write("변환된 현재 시간 : ",tm_value)
 
 # 채팅 입력창
-if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울,부산,대전)","서울"):
+if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울,부산,대전)"):
     # 1. 사용자 질문 출력 및 저장
     with st.chat_message("user"):
         st.markdown(prompt)
