@@ -92,3 +92,23 @@ if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울,부산,
     st.session_state.messages.append({"role":"user", "content":prompt})
 
 # 챗봇 답변 출력 영역
+with st.chat_message("assistant"):
+    # 딕셔너리에 있는 도시인지 확인 (없으면 기본값 서울 '108' 지정)
+    stn_id = station_map.get(prompt)
+    
+    if stn_id:
+        # 날씨 데이터 가져오기 실행
+        result = get_kma_weather(stn_id)
+        
+        if result["success"]:
+            reply = f"대한민국 기상청 관측 기준 [{prompt}]의 날씨입니다.\n\n" \
+                    f"**현재 기온**: {result['temp']} °C\n" \
+                    f"바람 **풍속**: {result['wind']} m/s\n" \
+                    f"습도 **상대습도**: {result['humidity']} %"
+        else:
+            reply = "죄송합니다. 현재 기상청 서버에서 데이터를 가져오지 못했어요. 잠시 후 다시 시도해 주세요!"
+    else:
+        reply = f"'{prompt}'은(는) 등록되지 않은 도시예요. 서울, 부산, 인천, 대구, 광주, 대전, 제주 중에서 입력해 주세요!"
+        
+    # 챗봇 답변 화면 출력 및 세션 저장
+    st.markdown(reply)
