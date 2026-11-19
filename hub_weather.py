@@ -3,12 +3,10 @@ from zoneinfo import ZoneInfo
 import streamlit as st
 import requests
 
-# 1. 페이지 설정 및 제목
+# 페이지 설정 및 제목
 st.title("🤖 기상청 우리동네 날씨 챗봇")
-st.write("대한민국 주요 도시의 실시간 기상청 관측 데이터를 알려드려요!")
 
-# 2. 기상청 지점번호 매핑 딕셔너리 (도시 이름 -> 기상청 지점 번호 stn)
-# 서울: 108, 부산: 159, 인천: 112, 대구: 143, 광주: 156, 대전: 133
+# 기상청 지점번호 매핑 딕셔너리 (도시 이름 -> 기상청 지점 번호 stn)
 station_map = {
     "서울": "108",
     "부산": "159",
@@ -19,16 +17,16 @@ station_map = {
     "제주": "184"
 }
 
-# 3. 세션 상태 초기화 (챗봇의 단기 기억 수첩)
+# 세션 상태 초기화 (챗봇의 단기 기억 수첩)
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 4. 기존 대화 기록 화면에 출력하기
+# 기존 대화 기록 화면에 출력하기
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# 5. 기상청 데이터를 가져와서 파싱하는 함수
+# 기상청 데이터를 가져와서 파싱하는 함수
 def get_kma_weather(stn_id):
     # 한국 시간 기준 현재 시간의 '정시' 구하기
     kst = ZoneInfo("Asia/Seoul")
@@ -42,9 +40,18 @@ def get_kma_weather(stn_id):
     response = requests.get(url)
     
     try:
-        # 데이터 파싱 (줄바꿈으로 쪼개고 주석(#) 제외한 마지막 행 선택)
+        # 데이터 파싱 - 전체 텍스트를 줄바꿈('\n') 기준으로 쪼개서 리스트로 만들기
         lines = response.text.split('\n')
-        data_line = [line for line in lines if line and not line.startswith('#')][-1]
+        
+        # 날씨 정보가 있는 줄만 추출할 리스트
+        clean_lines = []
+        for line in lines:
+            # 줄이 비어있지 않고, '#'으로 시작하지 않는다면?
+            if line != "" and not line.startswith('#'):
+                clean_lines.append(line)  # 깨끗한 상자에 담기!
+        
+        # 깨끗한 줄들 중에서 가장 마지막 줄 선택하기
+        data_line = clean_lines[-1]
         
         # 공백 기준으로 데이터 분리 (리스트화)
         values = data_line.split()
@@ -80,8 +87,8 @@ if prompt := st.chat_input("도시 이름을 입력하세요 (예: 서울, 부�
             if result["success"]:
                 reply = f"대한민국 기상청 관측 기준 [{prompt}]의 날씨입니다.\n\n" \
                         f"🌡️ **현재 기온**: {result['temp']} °C\n" \
-                        f" 바람 **풍속**: {result['wind']} m/s\n" \
-                        f" 습도 **상대습도**: {result['humidity']} %"
+                        f" **바람 풍속**: {result['wind']} m/s\n" \
+                        f" **상대 습도**: {result['humidity']} %"
             else:
                 reply = "죄송합니다. 현재 기상청 서버에서 데이터를 가져오지 못했어요. 잠시 후 다시 시도해 주세요!"
         else:
