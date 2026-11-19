@@ -3,11 +3,12 @@ from zoneinfo import ZoneInfo
 import streamlit as st
 import requests
 
-# API 키 설정
-API_KEY = "8464cff4dd30fe09c5447727526f939a"
+# 1. 페이지 설정 및 제목
+st.title("🤖 기상청 우리동네 날씨 챗봇")
+st.write("대한민국 주요 도시의 실시간 기상청 관측 데이터를 알려드려요!")
 
-st.title("우리동네 날씨챗봇")
-# 기상청 지점번호 매핑 딕셔너리 (도시 이름 -> 기상청 지점 번호 stn)
+# 2. 기상청 지점번호 매핑 딕셔너리 (도시 이름 -> 기상청 지점 번호 stn)
+# 서울: 108, 부산: 159, 인천: 112, 대구: 143, 광주: 156, 대전: 133
 station_map = {
     "서울": "108",
     "부산": "159",
@@ -18,107 +19,74 @@ station_map = {
     "제주": "184"
 }
 
-# 세션 상태 초기화
+# 3. 세션 상태 초기화 (챗봇의 단기 기억 수첩)
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 세션에 대화 기록 저장
+# 4. 기존 대화 기록 화면에 출력하기
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
-      
-# 한국 시간대 KST 설정
-kst = ZoneInfo("Asia/Seoul")
 
-# 현재 시간 가져오기
-now_kst = datetime.now(kst)
+# 5. 기상청 데이터를 가져와서 파싱하는 함수
+def get_kma_weather(stn_id):
+    # 한국 시간 기준 현재 시간의 '정시' 구하기
+    kst = ZoneInfo("Asia/Seoul")
+    now_kst = datetime.now(kst).replace(minute=0, second=0, microsecond=0)
+    tm_value = now_kst.strftime('%Y%m%d%H%M')
+    
+    # 인증키 및 URL 설정
+    auth_key = "HKQyUIPtQ72kMlCD7UO9cw"
+    url = f"https://apihub.kma.go.kr/api/typ01/url/kma_sfctm2.php?tm={tm_value}&stn={stn_id}&help=1&authKey={auth_key}"
+    
+    response = requests.get(url)
+    
+    try:
+        # 데이터 파싱 (줄바꿈으로 쪼개고 주석(#) 제외한 마지막 행 선택)
+        lines = response.text.split('\n')
+        data_line = [line for line in lines if line and not line.startswith('#')][-1]
+        
+        # 공백 기준으로 데이터 분리 (리스트화)
+        values = data_line.split()
+        
+        # 명세서 기준 인덱스 매칭
+        # TA(기온): 9번, WS(풍속): 3번, HM(습도): 12번 또는 13번 등 (데이터 포맷에 맞춤)
+        # 안전하게 가져오기 위해 값이 있는지 확인
+        ta = values[9]   # 기온
+        ws = values[3]   # 풍속
+        hm = values[13]  # 습도 (데이터 형식에 따라 12 또는 13)
+        
+        return {"temp": ta, "wind": ws, "humidity": hm, "success": True}
+        
+    except Exception as e:
+        return {"success": False, "error": str(e)}
 
-# 기상청 형식으로 변환
-tm_value = now_kst.strftime('%Y%m%d%H%M')
-
-# 기상청 API 허브 RestAPI
-url = f"https://apihub.kma.go.kr/api/typ01/url/kma_sfctm2.php?tm=tm_value&stn=0&help=1&authKey=HKQyUIPtQ72kMlCD7UO9cw"
-response = requests.get(url)
-
-# 테이터 파싱
-# API에서 데이터를 가져와서 필요한 정보 찾기
-
-# 1단계 : 전체 내용을 줄 단위로 분리
-all_lines = response.text.split('\n')
-
-# 2. 필요한 정보 검색(반복문)
-clean_lines = []
-# 샘플데이터 중에서 온도 정보가 있는 자료 검색
-# sample_data = [0.3, 10.0, 1.6, 56.0, 6.9, -9.0, -9.0, -9.0, -9.0, -9.0]
-for line in all_lines:
-  if line != "" and not line.startswith('#'):
-    # 만들어놓은 정제라인 변수에 리스트자료형으로 데이터 처리  
-    clean_lines.append(line)
-
-# 3. 분리시켜놓은 정보에서 마지막 정보만 추출
-data_line = clean_lines[-1]
-
-# 4. 최종 정보에서 온도 데이터 추출
-
-#st.write("마지막 정보 행")
-#st.write(data_line)
-
-#st.write("문제1. data_line의 자료형은 무엇인가요?")
-#st.write(f"data_line변수의 자료형 확인 : {type(data_line)}")
-#st.write("문제2. data_line에서 1024.5만 출력하세요.")
-#st.write(data_line[:12])
-#st.write(data_line[40:46])
-
-values = data_line.split()
-#st.write(values)
-#st.write(values[0])
-
-TA = values[11]
-HM = values[13]
-WS = values[3]
-
-# 오늘에 기상 데이터 출력
-#st.write(f"현재 온도 : {TA}°C")
-#st.write(f"현재 습도 : {HM}%")
-#st.write(f"현재 풍속 : {WS}m/s")
-
-sample_text = "Hello, python world"
-#인뎅싱으로 hello만 출력
-#st.write(sample_text[13:])
-
-#st.write("응답결과")
-# 데이터의 길이가 길어서 text함수가 더 보기 편함.
-#st.text(response.text)
-
-# 오늘의 날짜 출력
-#st.write("현재 시간 : ", now_kst)
-#st.write("변환된 현재 시간 : ",tm_value)
-
-# 채팅 입력창
-if prompt := st.chat_input("도시 이름을 입력하세요 (예:서울,부산,대전)"):
-    # 1. 사용자 질문 출력 및 저장
+# 6. 채팅 입력창 (하단 고정)
+if prompt := st.chat_input("도시 이름을 입력하세요 (예: 서울, 부산, 대전)"):
+    # 사용자 질문 출력 및 세션 저장
     with st.chat_message("user"):
         st.markdown(prompt)
-    st.session_state.messages.append({"role":"user", "content":prompt})
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
-# 챗봇 답변 출력 영역
-with st.chat_message("assistant"):
-    # 딕셔너리에 있는 도시인지 확인 (없으면 기본값 서울 '108' 지정)
-    stn_id = station_map.get(prompt)
-    
-    if stn_id:
-        # 날씨 데이터 가져오기 실행
-        result = get_kma_weather(stn_id)
+    # 챗봇 답변 출력 영역
+    with st.chat_message("assistant"):
+        # 딕셔너리에 있는 도시인지 확인 (없으면 기본값 서울 '108' 지정)
+        stn_id = station_map.get(prompt)
         
-        if result["success"]:
-            reply = f"대한민국 기상청 관측 기준 [{prompt}]의 날씨입니다.\n\n" \
-                    f"**현재 기온**: {result['temp']} °C\n" \
-                    f"바람 **풍속**: {result['wind']} m/s\n" \
-                    f"습도 **상대습도**: {result['humidity']} %"
+        if stn_id:
+            # 날씨 데이터 가져오기 실행
+            result = get_kma_weather(stn_id)
+            
+            if result["success"]:
+                reply = f"대한민국 기상청 관측 기준 [{prompt}]의 날씨입니다.\n\n" \
+                        f"🌡️ **현재 기온**: {result['temp']} °C\n" \
+                        f" 바람 **풍속**: {result['wind']} m/s\n" \
+                        f" 습도 **상대습도**: {result['humidity']} %"
+            else:
+                reply = "죄송합니다. 현재 기상청 서버에서 데이터를 가져오지 못했어요. 잠시 후 다시 시도해 주세요!"
         else:
-            reply = "죄송합니다. 현재 기상청 서버에서 데이터를 가져오지 못했어요. 잠시 후 다시 시도해 주세요!"
-    else:
-        reply = f"'{prompt}'은(는) 등록되지 않은 도시예요. 서울, 부산, 인천, 대구, 광주, 대전, 제주 중에서 입력해 주세요!"
-        
-    # 챗봇 답변 화면 출력 및 세션 저장
-    st.markdown(reply)
+            reply = f"'{prompt}'은(는) 등록되지 않은 도시예요. 서울, 부산, 인천, 대구, 광주, 대전, 제주 중에서 입력해 주세요!"
+            
+        # 챗봇 답변 화면 출력 및 세션 저장
+        st.markdown(reply)
+        st.session_state.messages.append({"role": "assistant", "content": reply})
